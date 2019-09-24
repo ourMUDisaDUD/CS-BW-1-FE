@@ -12,7 +12,8 @@ import Container from '@material-ui/core/Container';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import styled from 'styled-components';
 import { toast } from "react-toastify";
-import logo from './icon.jpg'
+import logo from './icon.jpg';
+import axios from 'axios';
 
 const ImgStyle = styled.div`
   img {
@@ -58,14 +59,9 @@ function SignUp(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.handleSubmit({
-      email,
-      password,
-      password2,
-      username,
-      firstName,
-      lastName
-    });
+    axios.post('https://lambda-mud-test.herokuapp.com/api/registration', {username, password1: password, password2})
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
   };
 
   return (
