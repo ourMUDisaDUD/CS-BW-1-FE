@@ -51,7 +51,7 @@ function SignIn(props) {
   const classes = useStyles();
   const handleSubmit = async e => {
     e.preventDefault();
-    axios.post('https://lambda-mud-test.herokuapp.com/api/login', {username: user, password})
+    axios.post('https://lambda-mud-test.herokuapp.com/api/login/', {username: user, password})
     .then(res => console.log(res))
     .catch(err => console.log(err))
   };
