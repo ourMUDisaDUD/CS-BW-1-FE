@@ -60,7 +60,7 @@ function SignUp(props) {
   const handleSubmit = e => {
     e.preventDefault();
     axios.post('https://lambda-mud-test.herokuapp.com/api/registration/', {username, password1: password, password2})
-    .then(res => console.log(res))
+    .then(res => localStorage.setItem('token', res.data.key))
     .catch(err => console.log(err))
   };
 
