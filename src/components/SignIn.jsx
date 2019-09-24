@@ -48,17 +48,22 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function SignIn(props) {
+  
   const classes = useStyles();
   const handleSubmit = async e => {
     e.preventDefault();
     axios.post('https://lambda-mud-test.herokuapp.com/api/login/', {username: user, password})
-    .then(res => localStorage.setItem('token', res.data.key))
+    .then(res => {
+      localStorage.setItem('token', res.data.key)
+      return props.history.push('/Game')})
     .catch(err => console.log(err))
   };
 
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   
+  console.log(props.history)
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -70,7 +75,7 @@ function SignIn(props) {
           Sign in
         </Typography>
         {/* {props.isLoading && <Spinner />} */}
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
+        <form className={classes.form} noValidate onSubmit={() => handleSubmit()}>
           <TextField
             variant="outlined"
             margin="normal"

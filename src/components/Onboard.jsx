@@ -10,9 +10,9 @@ const Onboard = props => {
 	return (
 		<Fragment>
 			{isLogin ? (
-				<SignIn login={isLogin} handleToggle={handleToggle} />
+				<SignIn login={isLogin} handleToggle={handleToggle} history={props.history} />
 			) : (
-				<SignUp login={isLogin} handleToggle={handleToggle} />
+				<SignUp login={isLogin} handleToggle={handleToggle} history={props.history}/>
 			)}
 		</Fragment>
 	);

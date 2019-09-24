@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   paper: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(6),
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
@@ -50,19 +50,20 @@ const useStyles = makeStyles(theme => ({
 
 function SignUp(props) {
   const classes = useStyles();
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
 
   const handleSubmit = e => {
     e.preventDefault();
     axios.post('https://lambda-mud-test.herokuapp.com/api/registration/', {username, password1: password, password2})
-    .then(res => localStorage.setItem('token', res.data.key))
+    .then(res => {
+      localStorage.setItem('token', res.data.key)
+      return props.history.push('/game')})
     .catch(err => console.log(err))
   };
+
+  console.log(props.history)
 
   return (
     <Container component="main" maxWidth="xs">
@@ -74,35 +75,8 @@ function SignUp(props) {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={() => handleSubmit()}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-                value={firstName}
-                onChange={e => setFirstName(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-                value={lastName}
-                onChange={e => setLastName(e.target.value)}
-              />
-            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -114,20 +88,6 @@ function SignUp(props) {
                 autoComplete="Username"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                value={email}
-                error={props.errors && props.errors.email ? true : false}
-                onChange={e => setEmail(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -164,7 +124,7 @@ function SignUp(props) {
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>
-          </Grid>
+            </Grid>
           <Button
             type="submit"
             fullWidth
