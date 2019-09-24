@@ -77,7 +77,7 @@ function SignIn(props) {
           Sign in
         </Typography>
         {/* {props.isLoading && <Spinner />} */}
-        <form className={classes.form} noValidate onSubmit={() => handleSubmit()}>
+        <form className={classes.form} noValidate onSubmit={(event) => handleSubmit(event)}>
           <TextField
             variant="outlined"
             margin="normal"
