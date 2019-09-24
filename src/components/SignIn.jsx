@@ -13,6 +13,7 @@ import styled from 'styled-components';
 // import Spinner from "../../utils/Spinner";
 import { toast } from "react-toastify";
 import logo from './icon.jpg';
+import axios from 'axios';
 
 const ImgStyle = styled.div`
   img {
@@ -50,7 +51,9 @@ function SignIn(props) {
   const classes = useStyles();
   const handleSubmit = async e => {
     e.preventDefault();
-    props.handleSubmit({ user, password });
+    axios.post('https://lambda-mud-test.herokuapp.com/api/login', {username: user, password})
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
   };
 
   const [user, setUser] = useState("");
