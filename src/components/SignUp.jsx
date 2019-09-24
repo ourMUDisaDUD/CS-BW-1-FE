@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {withRouter} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -61,6 +62,7 @@ function SignUp(props) {
       localStorage.setItem('token', res.data.key)
       return props.history.push('/game')})
     .catch(err => console.log(err))
+    console.log(localStorage.getItem('token'))
   };
 
   console.log(props.history)
@@ -151,4 +153,4 @@ function SignUp(props) {
   );
 }
 
-export default SignUp;
+export default withRouter(SignUp);

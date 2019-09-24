@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import styled from 'styled-components';
+import {withRouter} from 'react-router-dom'
 // import Spinner from "../../utils/Spinner";
 import { toast } from "react-toastify";
 import logo from './icon.jpg';
@@ -57,6 +58,7 @@ function SignIn(props) {
       localStorage.setItem('token', res.data.key)
       return props.history.push('/Game')})
     .catch(err => console.log(err))
+    console.log(localStorage.getItem('token'))
   };
 
   const [user, setUser] = useState("");
@@ -137,4 +139,4 @@ function SignIn(props) {
   );
 }
 
-export default SignIn
+export default withRouter(SignIn)
