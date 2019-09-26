@@ -1,8 +1,8 @@
 .map {
     background-image: url('http://www.aljanh.net/data/archive/img/3333179192.png');
     background-size: cover;
-    height: 600px;
-    width: 60%;
+    margin-left: 50px;
+    height: 800px;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;

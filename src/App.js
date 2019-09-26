@@ -9,11 +9,9 @@ import './App.css'
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Route exact path = "/" render={(props) => <Onboard {...props}/>}/>
-        <PrivateRoute path = "/game" component={Game}/>
-        <Route exact path = "/test" component={StatusBar}/>
-      </header>
+      <Route exact path = "/" render={(props) => <Onboard {...props}/>}/>
+      <PrivateRoute path = "/game" component={Game}/>
+      <Route exact path = "/test" component={StatusBar}/>
     </div>
   );
 }

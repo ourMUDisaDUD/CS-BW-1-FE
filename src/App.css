@@ -1,3 +1,6 @@
 .App {
-  background: #d2cbcb;
+  display: flex;
+  justify-content: flex-start;
+  /* background: #d2cbcb; */
+  background: #1A202C;
 }
