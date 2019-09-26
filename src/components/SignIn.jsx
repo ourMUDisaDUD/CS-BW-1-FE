@@ -53,7 +53,7 @@ function SignIn(props) {
   const classes = useStyles();
   const handleSubmit = async e => {
     e.preventDefault();
-    axios.post('https://lambda-mud-test.herokuapp.com/api/login/', {username: user, password})
+    axios.post('https://amuddyday.herokuapp.com/api/login/', {username: user, password})
     .then(res => {
       localStorage.setItem('token', res.data.key)
       return props.history.push('/Game')})
@@ -63,8 +63,6 @@ function SignIn(props) {
 
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  
-  console.log(props.history)
 
   return (
     <Container component="main" maxWidth="xs">

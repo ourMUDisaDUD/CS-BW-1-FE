@@ -10,10 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import styled from 'styled-components';
-import { toast } from "react-toastify";
-import logo from './icon.jpg';
 import axios from 'axios';
 
 const ImgStyle = styled.div`
@@ -57,15 +54,12 @@ function SignUp(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    axios.post('https://lambda-mud-test.herokuapp.com/api/registration/', {username, password1: password, password2})
+    axios.post('https://amuddyday.herokuapp.com/api/registration/', {username, password1: password, password2})
     .then(res => {
       localStorage.setItem('token', res.data.key)
       return props.history.push('/game')})
     .catch(err => console.log(err))
-    console.log(localStorage.getItem('token'))
   };
-
-  console.log(props.history)
 
   return (
     <Container component="main" maxWidth="xs">
