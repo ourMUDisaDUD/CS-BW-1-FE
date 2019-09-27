@@ -1,36 +1,59 @@
 .status-bar {
-    width: 30%;
-    margin: auto;
+  width: 30%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: space-between;
 }
 
 .navAndStatuses {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  margin: 5rem auto;
+  /* position: fixed; */
 }
 
 .buttons {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border: 1px solid black;
-    background: yellow
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* width: 50%;
+  border-radius: 0%;
+  border: 1px solid black; */
+  /* background: yellow; */
 }
 
 .updownlr {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background: red
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* width: fit-content; */
+  /* max-height: fit-content; */
+  border-radius: 75%;
+  border: 1px solid black;
+  padding: 0 2rem;
+  /* background: red; */
 }
 
 .leftright {
-    display: flex;
-    flex-direction: row;
-    background: blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  /* background: blue; */
+}
+.material-icons.MuiIcon-root.arw {
+  font-size: 4rem;
+  width: 4rem;
+  height: 4rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  user-select: none;
 }
 
-.statusLogs {
+/* .statusLogs {
     border: 3px solid black;
     box-sizing: border-box;
     display: flex;
@@ -44,4 +67,4 @@
     flex-wrap: wrap;
     width: 100%;
 
-}
+} */

@@ -11,6 +11,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 // import IconButton from '@material-ui/core/IconButton';
 import { IconButton } from '@material-ui/core';
 import { AccessAlarm, keyboard_arrow_right } from '@material-ui/icons';
+import { Box, PseudoBox, Text} from '@chakra-ui/core'
 import './StatusBar.css'
 
 
@@ -69,19 +70,22 @@ function StatusBar(props) {
 
             <div className="buttons">
                 <div className="updownlr">
-                    <Icon fontSize="large" onClick={() => props.moveUser("n")} alt="Move North">keyboard_arrow_up</Icon>
+                        <Icon onClick={() => props.moveUser("n")} alt="Move North" className="arw">keyboard_arrow_up</Icon>
                     <div className="leftright">
-                        <Icon fontSize="large" onClick={() => props.moveUser("w")} alt="Move West">keyboard_arrow_left</Icon>
-                        <Icon fontSize="large" onClick={() => props.moveUser("e")} alt="Move East">keyboard_arrow_right</Icon>
+                            <Icon  onClick={() => props.moveUser("w")} alt="Move West" className="arw">keyboard_arrow_left</Icon>
+                            <Icon onClick={() => props.moveUser("e")} alt="Move East" className="arw">keyboard_arrow_right</Icon>
                     </div>
-                    <Icon fontSize="large" onClick={() => props.moveUser("s")} alt="Move South">keyboard_arrow_down</Icon>
+                    <Icon onClick={() => props.moveUser("s")} alt="Move South" className="arw">keyboard_arrow_down</Icon>
                 </div>
             </div>
 
 
             <div className="status">
-                <h1>{props.room.name}</h1>
-                <h2>Currently in {props.room.title}</h2>
+                    <Text fontSize="2xl" color="#E59400
+">{props.room.name}</Text>
+                {/* <h1>{props.room.name}</h1> */}
+                <h2>Currently in 
+                <Text color="#fcf4e5">{props.room.title}</Text></h2>
                 <h3>{props.room.description}</h3>
             </div>
     </div>
@@ -89,43 +93,40 @@ function StatusBar(props) {
     <div className="statusLogs">
 
 {/* box containing 4 prev statuses */}
-{props.statlogs && props.statlogs.length > 0 ? 
-(
-<div>
-    <h1>Previous moves</h1>
-    {props.statlogs.map(log => { return (
-        
-        <div className="log">
-            <p>{log}</p>
-            </div>
+{/* // {props.statlogs && props.statlogs.length > 0 ? ( */}
+    {/* <div> */}
+
+
+                            <Box borderWidth="1px" rounded="md" overflow="hidden" border>
+                        {props.statlogs && props.statlogs.length > 0 ? (
+
+                                props.statlogs.map((log, i) => (
+                                    <PseudoBox key={i} px={4} py={2} bg="white" _even={{ bg: "gray.100" }}>
+                                       <Text>{log}</Text>
+                                    </PseudoBox>
+                                ))
+
+                        ) : 
+                        (
+                            ["Make a move", "Make a move", "Make a move", "Make a move"].map((item, i) => (
+                                <PseudoBox key={i} px={4} py={2} bg="white" _even={{ bg: "gray.100" }}>
+                                    {item}
+                                </PseudoBox>
+                            ))
+                    )   
+                        
+                        
+                        }
+
+    </Box>
+
+
+        </div>
+        </div>
         )
+        }
 
-    })}
-    </div>
-) : null }
-
-
-        </div>
-
-
-
-
-        </div>
-    )
-
-}
 
 export default StatusBar;
 
 
-
-{/* four buttons, up down left right */ }
-
-{/* show previous moves in status bar chat text esque thing */ }
-{/* maybe use a LRUC for this? to hold previous moves and display those? or ring buffer */ }
-
-let prevMoves = []
-
-// ex
-// "You moved Left."
-// "To the North of you, the {TITLE} blah. {DESCRIPTION}"
